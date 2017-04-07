@@ -96,7 +96,7 @@ class Stepper:
         print "%.4f-%s\tIn goal position: %.2f" % (time.clock(), self.name, self.current_position)
 
     else:
-      # Moe toward goal
+      # Move toward goal
       goal_delta = self.goal_position - self.current_position
 
       # Determine direction
