@@ -1,6 +1,8 @@
 Tentacle Control
 ===
 
+Python program to run on the Raspberry pi. It accepts OSC messages of 4 values, and will then have the 4 stepper motors (A,B,C,D) try to move to those positions. 
+
 To run:
 
     python TentacleControl.py
