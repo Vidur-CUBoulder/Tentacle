@@ -15,6 +15,9 @@ class Stepper:
 
   debug = True
 
+  # How close to target is "good enough" to stop moving?
+  closeness_threshold = .5
+
   # Current position of stepper (measured in steps away from zero point)
   current_position = 0.0
   goal_position = 0.0
@@ -89,7 +92,7 @@ class Stepper:
 
     # TODO: Later: Implement PID loop with encoders.
 
-    if self.goal_position == self.current_position:
+    if abs(self.goal_position - self.current_position) < self.closeness_threshold:
       # Do nothing if we're already there
 
       if self.debug:
@@ -116,7 +119,7 @@ class Stepper:
         self.current_position = self.current_position - move_steps
 
       if self.debug:
-        print "%.4f-%s\tMoved: %.2f steps\tDirection: %s\tNew Position:%.2f" % (time.clock(), self.name, move_steps, direction, self.current_position)
+        print "%.4f-%s\tMoved: %.2f steps\tDirection: %s\tNew Position:%.2f Goal: %.2f" % (time.clock(), self.name, move_steps, direction, self.current_position, self.goal_position)
 
     # If we're running, call this method again after time interval
     if self.is_running:
