@@ -3,7 +3,7 @@
 # Initial version: stan@wanderingstan.com
 #
 
-import Easydriver_stub as ed
+import Easydriver as ed
 import time, threading
 from math import copysign
 
