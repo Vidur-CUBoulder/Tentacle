@@ -15,10 +15,15 @@ class Osc2Steppers:
         # listen for OSC messages on port 12000 (Wekinator default)
         self.stepper_count = 4
 
-        self.stepper_A = Stepper([1,2,3,4,5,6,7,8], "Stepper A", self.stepper_time_interval_seconds)
-        self.stepper_B = Stepper([1,2,3,4,5,6,7,8], "Stepper B", self.stepper_time_interval_seconds)
-        self.stepper_C = Stepper([1,2,3,4,5,6,7,8], "Stepper C", self.stepper_time_interval_seconds)
-        self.stepper_D = Stepper([1,2,3,4,5,6,7,8], "Stepper D", self.stepper_time_interval_seconds)
+        # Pin order:             [ENB|MS1|MS2|MS3|RST|SLP|STP|DIR]
+        self.stepper_A = Stepper([  4,  7,  6,  5,  0,  0,  3,  2],
+            "Stepper A", self.stepper_time_interval_seconds)
+        self.stepper_B = Stepper([ 10, 11, 12, 13,  0,  0,  9,  8],
+            "Stepper B", self.stepper_time_interval_seconds)
+        self.stepper_C = Stepper([ 16, 17, 18, 19,  0,  0, 15, 14],
+            "Stepper C", self.stepper_time_interval_seconds)
+        self.stepper_D = Stepper([ 22, 23, 24, 25,  0,  0, 21, 20],
+            "Stepper D", self.stepper_time_interval_seconds)
         print "Created 4 steppers"
 
         self.OSCServer = OSC.OSCServer((osc_ip, osc_port))

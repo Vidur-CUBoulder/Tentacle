@@ -3,7 +3,7 @@
 # Initial version: stan@wanderingstan.com
 #
 
-import Easydriver as ed
+import Easydriver_stub as ed
 import time, threading
 from math import copysign
 
@@ -38,6 +38,11 @@ class Stepper:
 
   def __init__(self, pins_array, name="Stepper", update_interval_seconds=0.1):
     """Function to set all pins from array. Order is same as on Big Easy board"""
+
+    print "New stepper created: %s" % (name)
+    print "      [ENB|MS1|MS2|MS3|RST|SLP|STP|DIR]"
+    print "Pins: [%3d|%3d|%3d|%3d|%3d|%3d|%3d|%3d]" % tuple(pins_array)
+
     self.pin_dir = pins_array.pop()
     self.pin_step = pins_array.pop()
     self.pin_sleep = pins_array.pop()
@@ -48,6 +53,7 @@ class Stepper:
     self.pin_enable = pins_array.pop()
     self.name = name
     self.update_interval_seconds = update_interval_seconds
+
 
     """Create driver object with these pins for this stepper"""
     self.easydriver_stepper = ed.Easydriver(
