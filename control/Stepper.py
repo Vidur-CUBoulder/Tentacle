@@ -31,7 +31,7 @@ class Stepper:
   max_position = +40.0
   min_position = -40.0
 
-  def __init__(self, pins_array, name="Stepper", update_interval_seconds=0.10):
+  def __init__(self, pins_array, name="Stepper", update_interval_seconds=0.25):
     """Function to set all pins from array. Order is same as on Big Easy board"""
 
     print "New stepper created: %s" % (name)
@@ -50,11 +50,15 @@ class Stepper:
     self.name = name
     self.update_interval_seconds = update_interval_seconds
 
+    stepper_delay = 0.1
+    if update_interval_seconds < (2 * stepper_delay):
+      raise Exception("Error: Update interval (%.2f) is smaller than 2*stepper_delay. (%.2f)" % (update_interval_seconds, stepper_delay))
+
 
     """Create driver object with these pins for this stepper"""
     self.easydriver_stepper = ed.Easydriver(
       self.pin_step,
-      self.update_interval_seconds / 2, # Not sure how to handle this one...there are 2 timed parts to doing a step
+      stepper_delay, # Not sure how to handle this one...there are 2 timed parts to doing a step
       self.pin_dir,
       self.pin_ms1,
       self.pin_ms2,

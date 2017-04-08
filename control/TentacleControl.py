@@ -5,7 +5,7 @@ import OSC
 class Osc2Steppers:
     """Class that listens for OSC messages, and forwards them as target positions for stepper motors"""
 
-    stepper_time_interval_seconds = 0.1
+    stepper_time_interval_seconds = 0.25
 
     def __init__(self, osc_ip='127.0.0.1', osc_port=12000):
         """Create our stepper object and osc server object"""
