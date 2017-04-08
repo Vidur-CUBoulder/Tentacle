@@ -16,7 +16,7 @@ class Osc2Steppers:
         self.stepper_count = 4
 
         # Pin order:             [ENB|MS1|MS2|MS3|RST|SLP|STP|DIR]
-        self.stepper_A = Stepper([  4,  7,  6,  5,  0,  0,  3,  2],
+        self.stepper_A = Stepper([  4,  5,  6,  7,  0,  0,  3,  2],
             "Stepper A", self.stepper_time_interval_seconds)
         self.stepper_B = Stepper([ 10, 11, 12, 13,  0,  0,  9,  8],
             "Stepper B", self.stepper_time_interval_seconds)
@@ -28,7 +28,7 @@ class Osc2Steppers:
 
         self.OSCServer = OSC.OSCServer((osc_ip, osc_port))
         self.OSCServer.addMsgHandler('/wek/outputs', self.wek_outputs_handler)
-        print ("Tentacle Control is listening for OSC message /wek/outputs, ip %s port %s" % (osc_ip, osc_port));
+        print "Tentacle Control is listening for OSC message /wek/outputs, ip %s port %s" % (osc_ip, osc_port)
 
 
     def go(self):
