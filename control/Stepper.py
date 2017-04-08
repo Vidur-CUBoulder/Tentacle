@@ -2,8 +2,13 @@
 #
 # Initial version: stan@wanderingstan.com
 #
+import pkgutil
+if pkgutil.find_loader("RPi"):
+  import Easydriver as ed
+else:
+  import Easydriver_stub as ed
+  print "Could not find RPi module. So using stub GPIO module."
 
-import Easydriver_stub as ed
 import time, threading
 from math import copysign
 
