@@ -16,5 +16,29 @@ To test:
  - Modify outputs to have range equal to steps of motion desired. (e.g. -40.0 to +40.0)
  - Move sliders
 
-Note: `Stepper.py` will detect if you are *not* running on Raspberry Pi, and will use a stub file if not. This will show the same debug messages as real code, but (obviously) won't change do anything with GPIO.
+Note: `Stepper.py` will detect if you are running on Raspberry Pi, and will use a stub file if you are *not*. This will show the same debug messages as real code, but (obviously) won't do anything with GPIO.
 
+Sample output:
+
+	$ python TentacleControl.py
+	Could not find RPi module. So using stub GPIO module.
+	New stepper created: Stepper A
+	      [ENB|MS1|MS2|MS3|RST|SLP|STP|DIR]
+	Pins: [  4|  5|  6|  7|  0|  0|  3|  2]
+	New stepper created: Stepper B
+	      [ENB|MS1|MS2|MS3|RST|SLP|STP|DIR]
+	Pins: [ 10| 11| 12| 13|  0|  0|  9|  8]
+	New stepper created: Stepper C
+	      [ENB|MS1|MS2|MS3|RST|SLP|STP|DIR]
+	Pins: [ 16| 17| 18| 19|  0|  0| 15| 14]
+	New stepper created: Stepper D
+	      [ENB|MS1|MS2|MS3|RST|SLP|STP|DIR]
+	Pins: [ 22| 23| 24| 25|  0|  0| 21| 20]
+	Created 4 steppers
+	Tentacle Control is listening for OSC message /wek/outputs, ip 127.0.0.1 port 12000
+	0.0934-Stepper A	In goal position: 0.00
+	0.0940-Stepper A	In goal position: 0.00
+	0.0946-Stepper A	In goal position: 0.00
+	0.0953-Stepper A	In goal position: 0.00
+	0.0959-Stepper A	In goal position: 0.00
+	0.0965-Stepper A	In goal position: 0.00
