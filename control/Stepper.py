@@ -3,7 +3,7 @@
 # Initial version: stan@wanderingstan.com
 #
 
-import Easydriver as ed
+import Easydriver_stub as ed
 import time, threading
 from math import copysign
 
@@ -16,7 +16,7 @@ class Stepper:
   debug = True
 
   # How close to target is "good enough" to stop moving?
-  closeness_threshold = .5
+  closeness_threshold = 0.5
 
   # Current position of stepper (measured in steps away from zero point)
   current_position = 0.0
@@ -26,17 +26,7 @@ class Stepper:
   max_position = +40.0
   min_position = -40.0
 
-  update_interval_seconds = 0.01 # This might need to be controlled by higher class...
-
-  # Pins on Pi
-  pin_enable = 0
-  pin_step = 0
-  pin_dir = 0
-  pin_ms1 = 0
-  pin_ms2 = 0
-  pin_ms3 = 0
-
-  def __init__(self, pins_array, name="Stepper", update_interval_seconds=0.1):
+  def __init__(self, pins_array, name="Stepper", update_interval_seconds=0.10):
     """Function to set all pins from array. Order is same as on Big Easy board"""
 
     print "New stepper created: %s" % (name)
@@ -51,6 +41,7 @@ class Stepper:
     self.pin_ms2 = pins_array.pop()
     self.pin_ms1 = pins_array.pop()
     self.pin_enable = pins_array.pop()
+
     self.name = name
     self.update_interval_seconds = update_interval_seconds
 
@@ -58,7 +49,7 @@ class Stepper:
     """Create driver object with these pins for this stepper"""
     self.easydriver_stepper = ed.Easydriver(
       self.pin_step,
-      self.update_interval_seconds/2, # Not sure how to handle this one...there are 2 timed parts to doing a step
+      self.update_interval_seconds / 2, # Not sure how to handle this one...there are 2 timed parts to doing a step
       self.pin_dir,
       self.pin_ms1,
       self.pin_ms2,
