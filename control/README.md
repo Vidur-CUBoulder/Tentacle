@@ -5,10 +5,21 @@ Python program to run on the Raspberry pi. It accepts OSC messages of 4 values, 
 
 Right now its hard coded that motors move only one step per update cycle.
 
+Settings
+---
 Constants in the code can be modified to set how often the steppers update their position, OSC server address, and other settings.
 
-To run:
+- Enable/Disable steppers by [commenting lines 36-40 in `TentacleControl.py`](https://github.com/CUBoulder-2017-IML4HCI/Tentacle/blob/master/control/TentacleControl.py#L36)
+- [`stepper_time_interval_seconds = 0.25`](https://github.com/CUBoulder-2017-IML4HCI/Tentacle/blob/master/control/TentacleControl.py#L8) Steppers will continually update their position on this schedule and attempt to move toward the last-set goal position, no matter how many OSC messages are received.
 
+- [Stepper minimum/maxium](https://github.com/CUBoulder-2017-IML4HCI/Tentacle/blob/master/control/Stepper.py#L30) in `Stepper.py`
+
+
+
+Running
+----
+
+To run:
     python TentacleControl.py
 
 To test:
