@@ -28,8 +28,8 @@ class Stepper:
   goal_position = 0.0
 
   # Extema limits for this stepper
-  max_position = +40.0
-  min_position = -40.0
+  max_position = +100.0
+  min_position = -100.0
 
   def __init__(self, pins_array, name="Stepper", update_interval_seconds=0.25):
     """Function to set all pins from array. Order is same as on Big Easy board"""
@@ -50,7 +50,7 @@ class Stepper:
     self.name = name
     self.update_interval_seconds = update_interval_seconds
 
-    stepper_delay = 0.1
+    stepper_delay = 0.01
     if update_interval_seconds < (2 * stepper_delay):
       raise Exception("Error: Update interval (%.2f) is smaller than 2*stepper_delay. (%.2f)" % (update_interval_seconds, stepper_delay))
 
@@ -68,6 +68,8 @@ class Stepper:
       self.pin_reset,
       self.name
     )
+    # Set to use full steps
+    self.easydriver_stepper.set_full_step()
 
   def set_zero_point(self):
     """Set the current stepper position as our zero point"""
