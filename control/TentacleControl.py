@@ -5,6 +5,7 @@ import OSC
 class Osc2Steppers:
     """Class that listens for OSC messages, and forwards them as target positions for stepper motors"""
 
+    # The steppers position is updated regularly on this schedule.
     stepper_time_interval_seconds = 0.25
 
     def __init__(self, osc_ip='127.0.0.1', osc_port=12000):
@@ -12,7 +13,6 @@ class Osc2Steppers:
 
         self.debug = True
 
-        # listen for OSC messages on port 12000 (Wekinator default)
         self.stepper_count = 4
 
         # Pin order:             [ENB|MS1|MS2|MS3|RST|SLP|STP|DIR]
@@ -41,6 +41,7 @@ class Osc2Steppers:
 
     def wek_outputs_handler(self, addr, tags, data, client_address):
         """Callback that is called when we receive an osc message with path '/wek/outputs'"""
+
         if self.debug:
             print "OSCMessage '%s' from %s: %s" % (addr, client_address, data)
 
