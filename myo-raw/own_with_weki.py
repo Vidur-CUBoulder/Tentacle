@@ -11,11 +11,6 @@ wek.connect(('127.0.0.1', 6448))
 
 
 
-
-
-
-
-
 def set_output(state):
     oscmsg = OSC.OSCMessage()
     oscmsg.setAddress("/wekinator/control/outputs")
@@ -82,6 +77,8 @@ class Echo(protocol.Protocol):
     
     def dataReceived(self, data):
         "As soon as any data is received, write it back."
+        print(data)
+        data = data.strip()
         if(data == "1"):
             print("Recieved 1")
             set_output(1)
