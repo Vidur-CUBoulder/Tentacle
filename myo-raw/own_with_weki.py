@@ -103,6 +103,9 @@ class Echo(protocol.Protocol):
         elif(data == "8"):
             print("Recieved 8")
             run()
+        elif(data == "9"):
+            print("Received 9")
+            stop_run()
         reply = str(data) + "reply"
         self.transport.write(reply)    
         
